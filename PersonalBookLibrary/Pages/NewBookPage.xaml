@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PersonalBookLibrary.Controls"
+             xmlns:viewModels="clr-namespace:PersonalBookLibrary.ViewModels"
+             x:Class="PersonalBookLibrary.Pages.NewBookPage"
+             x:DataType="viewModels:NewBookViewModel"
+             Title="New Book">
+
+    <Grid
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+        
+        <ScrollView
+            Padding="20, 10">
+            
+            <VerticalStackLayout
+                Spacing="10">
+
+                <controls:ValidatedInputField 
+                    Title="Title"
+                    IsRequired="true"
+                    MaxLength="{Binding StringFieldMaxLength}"
+                    Value="{Binding Title}"                    
+                    ValidationMessage="{Binding TitleErrorMessage}" />
+
+                <controls:ValidatedInputField 
+                    Title="Author"
+                    IsRequired="true"
+                    MaxLength="{Binding StringFieldMaxLength}"
+                    Value="{Binding Author}" 
+                    ValidationMessage="{Binding AuthorErrorMessage}" />
+
+                <controls:ValidatedInputField 
+                    Title="Genre"
+                    IsRequired="true"
+                    MaxLength="{Binding StringFieldMaxLength}"
+                    Value="{Binding Genre}" 
+                    ValidationMessage="{Binding GenreErrorMessage}" />
+
+                <controls:ValidatedInputField 
+                    Title="Publication year"
+                    Keyboard="Numeric"
+                    MaxLength="{Binding YearFieldMaxLength}"
+                    IsRequired="true"
+                    Value="{Binding PublicationYear}"
+                    ValidationMessage="{Binding PublicationYearErrorMessage}" />
+
+                <controls:ValidatedInputField 
+                    Title="Description"
+                    IsRequired="true"
+                    MaxLength="{Binding StringFieldMaxLength}"
+                    Value="{Binding Description}"
+                    ValidationMessage="{Binding DescriptionErrorMessage}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid
+            VerticalOptions="End"
+            HorizontalOptions="Fill"
+            Padding="10,5"
+            BackgroundColor="White"
+            Shadow="{StaticResource MediumElevationShadow}">
+
+            <Button
+                Text="Add book to library"
+                Command="{Binding AddBookCommand}">
+            </Button>
+        </Grid>
+    </Grid>
+
+
+</ContentPage>

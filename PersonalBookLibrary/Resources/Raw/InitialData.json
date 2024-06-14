@@ -1,0 +1,23 @@
+[
+  {
+    "Author": "Herman Melville",
+    "Description": "Moby Dick, novel by Herman Melville.",
+    "Genre": "Novel",
+    "PublicationYear": 1851,
+    "Title": "Moby Dick"
+  },
+  {
+    "Author": "Mary Shelley",
+    "Description": "Frankenstein; or, The Modern Prometheus is an 1818 novel written by English author Mary Shelley. Frankenstein tells the story of Victor Frankenstein, a young scientist who creates a sapient creature in an unorthodox scientific experiment.",
+    "Genre": "Horror fiction",
+    "PublicationYear": 1818,
+    "Title": "Frankenstein"
+  },
+  {
+    "Author": "Miguel de Cervantes",
+    "Description": "Don Quixote is a Spanish epic novel by Miguel de Cervantes.",
+    "Genre": "Novel",
+    "PublicationYear": 1605,
+    "Title": "Don Quixote"
+  }
+]

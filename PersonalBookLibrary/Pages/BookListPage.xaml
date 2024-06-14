@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PersonalBookLibrary.ViewModels"
+             x:Class="PersonalBookLibrary.Pages.BookListPage"
+             x:DataType="viewModels:BookListViewModel">
+
+    <Grid>
+        <CollectionView
+            ItemsSource="{Binding FilteredBooks}">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout 
+                    Orientation="Vertical"
+                    Span="2" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+                <!-- Offset to properly overlay header shadow without clipping into CollectionView contents -->
+                <BoxView
+                    Color="Transparent"
+                    HeightRequest="{Binding Height, Source={x:Reference PageHeader}}" />
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="viewModels:BookViewModel">
+                    <Grid
+                        Padding="10, 5">
+
+                        <Border
+                            BackgroundColor="White"
+                            Stroke="Transparent"
+                            Shadow="{StaticResource CloseElevationShadow}">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="5" />
+                            </Border.StrokeShape>
+
+                            <VerticalStackLayout
+                                Padding="10">
+                                <Label 
+                                    Text="{Binding Title}"
+                                    FontSize="Medium"
+                                    FontFamily="FontFamilySemibold"
+                                    TextColor="{StaticResource Primary}" />
+                                <Label
+                                    FontSize="Small"
+                                    TextColor="{StaticResource Gray600}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="by " />
+                                            <Span Text="{Binding Author}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    FontSize="Small"
+                                    TextColor="{StaticResource Gray600}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Genre}" />
+                                            <Span Text=", " />
+                                            <Span Text="{Binding PublicationYear}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+                                    FontSize="Medium"
+                                    TextColor="{StaticResource Gray900}"
+                                    Text="{Binding Description}"
+                                    MaxLines="5" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Grid
+            x:Name="PageHeader"
+            VerticalOptions="Start"
+            HorizontalOptions="Fill"
+            BackgroundColor="White"
+            ColumnDefinitions="*, Auto"
+            Shadow="{StaticResource MediumElevationShadow}"
+            Padding="10, 5">
+
+            <SearchBar
+                Grid.Column="0"
+                Text="{Binding SearchFilter, Mode=TwoWay}"
+                Placeholder="Search..."
+                PlaceholderColor="{StaticResource Gray500}"/>
+
+            <Button
+                Grid.Column="1"
+                ImageSource="sorticon.png"
+                HeightRequest="40"
+                WidthRequest="40"
+                Command="{Binding ChangeSortingCommand}"/>
+
+        </Grid>
+
+        <Button
+            VerticalOptions="End"
+            HorizontalOptions="End"
+            Margin="0,0,40,60"
+            WidthRequest="60"
+            HeightRequest="60"
+            CornerRadius="15"
+            FontSize="Large"
+            Text="+"
+            Command="{Binding AddBookCommand}"
+            Shadow="{StaticResource ActionButtonShadow}" />
+
+    </Grid>
+</ContentPage>

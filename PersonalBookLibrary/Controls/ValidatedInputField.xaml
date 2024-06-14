@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PersonalBookLibrary.Controls.ValidatedInputField"
+             x:Name="_self">
+    <Grid
+        RowDefinitions="Auto, Auto, Auto">
+        <HorizontalStackLayout
+            Grid.Row="0">
+            <Label
+                Text="{Binding Title, Source={x:Reference _self}}" />
+            <Label
+                Text=" *"
+                TextColor="Red"
+                IsVisible="{Binding IsRequired, Source={x:Reference _self}}"/>
+
+        </HorizontalStackLayout>
+
+        <Entry
+            x:Name="InputField"
+            Grid.Row="1"
+            Keyboard="{Binding Keyboard, Source={x:Reference _self}}"
+            Text="{Binding Value, Source={x:Reference _self}, Mode=TwoWay}"
+            MaxLength="{Binding MaxLength, Source={x:Reference _self}}" />
+
+        <Label
+            Grid.Row="2"
+            FontSize="Small"
+            TextColor="Red"
+            Text="{Binding ValidationMessage, Source={x:Reference _self}}" />
+
+    </Grid>
+</ContentView>
